@@ -1,0 +1,17 @@
+.TH "APT\-ROOTS" "1" "10\ \&September\ \&2014" "APT-ROOTS" "APT"
+.SH "NAME"
+apt-roots \- Show packages with are not required by any others
+.SH "SYNOPSIS"
+\fBapt\-roots\fR
+.SH "DESCRIPTION"
+.PP
+\fBapt\-roots\fR
+will search all the install packages and find the root packages, that is, those on which no other package depends. In principle, this should be the list of packages manually requested by the user of the system.
+.SH "SEE ALSO"
+.PP
+\fBapt.conf\fR(5)
+.PP
+\fBapt-cache\fR(8)
+.SH "AUTHORS"
+.PP
+\fBAndre Masella\fR
