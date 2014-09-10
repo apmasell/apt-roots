@@ -15,6 +15,6 @@ Installation from PPA is available:
 
 Or it can be compile from source:
 
-   sudo apt-get install libapt-pkg-dev
-   make
-   sudo make install
+    sudo apt-get install libapt-pkg-dev
+    make
+    sudo make install
