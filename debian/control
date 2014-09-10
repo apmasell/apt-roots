@@ -1,0 +1,20 @@
+Source: apt-roots
+Section: admin
+Priority: optional
+Maintainer: Andre Masella <andre@masella.name>
+Build-Depends: debhelper (>= 9.0.0), libapt-pkg-dev
+Standards-Version: 3.9.5
+Homepage: https://github.com/apmasell/apt-roots
+Vcs-Browser: https://github.com/apmasell/apt-roots
+
+Package: apt-roots
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Find all the `root' packages installed
+ This finds all the packages that were, in principle, installed by the
+ administrator of the system. Some packages are marked as manually installed,
+ even when they are not both in error and to prevent uninstallation of important
+ programs.
+ .
+ apt-roots finds packages that are installed upon which no other installed
+ package depends, whether marked manual or not.
