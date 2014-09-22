@@ -16,6 +16,10 @@ void find_top_pkgs()
 	std::set < std::string > top_level_pkgs;
 	std::set < std::string > provide_pkgs;
 
+	/*
+	 * Collect all the packages that are depended upon by installed packages but
+	 * are “provides” package (i.e., there is no real package with the same name).
+	 */
 	for (auto package = cache_file.GetPkgCache()->PkgBegin();
 	     !package.end(); package++) {
 		if (!is_installed(package->CurrentState)) {
@@ -30,12 +34,19 @@ void find_top_pkgs()
 		}
 	}
 
+	/*
+	 * Filter through all the install packages.
+	 */
 	for (auto package = cache_file.GetPkgCache()->PkgBegin();
 	     !package.end(); package++) {
 		if (!is_installed(package->CurrentState)) {
 			continue;
 		}
 		bool top_level = true;
+		/*
+		 * This package is not top-level if another package depends on it, for any
+		 * reason, including “suggests” or “recommends”.
+		 */
 		for (auto rdeps = package.RevDependsList();
 		     top_level && !rdeps.end(); rdeps++) {
 			auto owner = rdeps.ParentPkg();
@@ -43,6 +54,10 @@ void find_top_pkgs()
 				top_level = false;
 			}
 		}
+		/*
+		 * This package is not top-level if it “provides” a name that has been
+		 * previously established as useful.
+		 */
 		for (auto provides = package.ProvidesList();
 		     top_level && !provides.end(); provides++) {
 			if (provides.OwnerPkg().Name() ==
@@ -55,11 +70,17 @@ void find_top_pkgs()
 				top_level = false;
 			}
 		}
+		/*
+		 * Collect it.
+		 */
 		if (top_level) {
 			top_level_pkgs.insert(package.FullName(true));
 		}
 	}
 
+	/*
+	 * Show the list, sorted alphabetically by the set.
+	 */
 	for (auto name = top_level_pkgs.begin(); name != top_level_pkgs.end();
 	     name++) {
 		std::cout << *name << std::endl;
