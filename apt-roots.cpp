@@ -2,7 +2,6 @@
 #include <apt-pkg/pkgcache.h>
 #include <iostream>
 #include <set>
-#include <sstream>
 #include <string>
 
 static bool is_installed(unsigned char state)
@@ -31,10 +30,7 @@ void find_top_pkgs()
 			}
 		}
 		if (top_level) {
-			std::ostringstream qualified_name;
-			qualified_name << package.
-			    Name() << ":" << package.Arch();
-			top_level_pkgs.insert(qualified_name.str());
+			top_level_pkgs.insert(package.FullName(true));
 		}
 	}
 
