@@ -4,13 +4,15 @@
 #include <set>
 #include <string>
 
+void find_top_pkgs(void);
+
 static bool is_installed(unsigned char state)
 {
-	return state != pkgCache::State::PkgCurrentState::NotInstalled
-	    && state != pkgCache::State::PkgCurrentState::ConfigFiles;
+	return state != pkgCache::State::NotInstalled
+	    && state != pkgCache::State::ConfigFiles;
 }
 
-void find_top_pkgs()
+void find_top_pkgs(void)
 {
 	pkgCacheFile cache_file;
 	std::set < std::string > top_level_pkgs;
@@ -28,8 +30,8 @@ void find_top_pkgs()
 		for (auto rdeps = package.RevDependsList(); !rdeps.end();
 		     rdeps++) {
 			if (rdeps.TargetVer() == NULL) {
-				provide_pkgs.insert(rdeps.
-						    ParentPkg().FullName(true));
+				provide_pkgs.insert(rdeps.ParentPkg().
+						    FullName(true));
 			}
 		}
 	}
