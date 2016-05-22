@@ -1,3 +1,9 @@
+apt-roots (1.2) xenial; urgency=medium
+
+  * Upgrade to Xenial
+
+ -- Andre Masella <andre@masella.name>  Sun, 22 May 2016 08:51:26 -0400
+
 apt-roots (1.1) trusty; urgency=medium
 
   * Avoid unnecessary architecture in package names
