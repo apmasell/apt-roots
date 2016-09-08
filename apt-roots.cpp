@@ -18,20 +18,25 @@ void find_top_pkgs(void)
 	std::set < std::string > top_level_pkgs;
 	std::set < std::string > provide_pkgs;
 
+	if (!cache_file.Open(nullptr, false)) {
+		_error->DumpErrors();
+		return;
+	}
+	auto cache = cache_file.GetDepCache();
+
 	/*
 	 * Collect all the packages that are depended upon by installed packages but
 	 * are “provides” package (i.e., there is no real package with the same name).
 	 */
-	for (auto package = cache_file.GetPkgCache()->PkgBegin();
-	     !package.end(); package++) {
+	for (auto package = cache->PkgBegin(); !package.end(); package++) {
 		if (!is_installed(package->CurrentState)) {
 			continue;
 		}
 		for (auto rdeps = package.RevDependsList(); !rdeps.end();
 		     rdeps++) {
-			if (rdeps.TargetVer() == NULL) {
-				provide_pkgs.insert(rdeps.ParentPkg().
-						    FullName(true));
+			if (rdeps.TargetVer() == nullptr) {
+				provide_pkgs.insert(rdeps.
+						    ParentPkg().FullName(true));
 			}
 		}
 	}
@@ -39,12 +44,13 @@ void find_top_pkgs(void)
 	/*
 	 * Filter through all the install packages.
 	 */
-	for (auto package = cache_file.GetPkgCache()->PkgBegin();
-	     !package.end(); package++) {
+	for (auto package = cache->PkgBegin(); !package.end(); package++) {
 		if (!is_installed(package->CurrentState)) {
 			continue;
 		}
-		bool top_level = true;
+		bool top_level =
+		    ((*cache)[package].Flags & pkgCache::Flag::Auto) == 0;
+
 		/*
 		 * This package is not top-level if another package depends on it, for any
 		 * reason, including “suggests” or “recommends”.
