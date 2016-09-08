@@ -1,3 +1,9 @@
+apt-roots (1.3) xenial; urgency=medium
+
+  * Ignore automatically installed packages
+
+ -- Andre Masella <andre@masella.name>  Thu, 08 Sep 2016 18:51:28 -0400
+
 apt-roots (1.2) xenial; urgency=medium
 
   * Upgrade to Xenial
