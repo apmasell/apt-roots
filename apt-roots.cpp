@@ -104,6 +104,5 @@ int main()
 	}
 	find_top_pkgs();
 	delete _config;
-	delete _error;
 	return 0;
 }
