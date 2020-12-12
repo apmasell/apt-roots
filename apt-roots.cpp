@@ -1,5 +1,8 @@
 #include <apt-pkg/cachefile.h>
+#include <apt-pkg/error.h>
+#include <apt-pkg/init.h>
 #include <apt-pkg/pkgcache.h>
+#include <apt-pkg/pkgsystem.h>
 #include <iostream>
 #include <set>
 #include <string>
