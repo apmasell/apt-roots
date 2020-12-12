@@ -2,8 +2,8 @@ Source: apt-roots
 Section: admin
 Priority: optional
 Maintainer: Andre Masella <andre@masella.name>
-Build-Depends: debhelper (>= 9.0.0), libapt-pkg-dev
-Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 12.0.0), libapt-pkg-dev
+Standards-Version: 4.5.0
 Homepage: https://github.com/apmasell/apt-roots
 Vcs-Browser: https://github.com/apmasell/apt-roots
 

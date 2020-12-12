@@ -1,3 +1,9 @@
+apt-roots (1.4ubuntu1) focal; urgency=medium
+
+  * Update to focal
+
+ -- Andre Masella <andre@masella.name>  Sat, 12 Dec 2020 08:37:40 -0500
+
 apt-roots (1.4) bionic; urgency=medium
 
   * Remove double free bug
