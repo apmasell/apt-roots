@@ -1,3 +1,9 @@
+apt-roots (1.4ubuntu2) focal; urgency=medium
+
+  * Update to new library API
+
+ -- Andre Masella <andre@masella.name>  Sat, 12 Dec 2020 09:54:22 -0500
+
 apt-roots (1.4ubuntu1) focal; urgency=medium
 
   * Update to focal
