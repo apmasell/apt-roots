@@ -1,3 +1,9 @@
+apt-roots (1.4ubuntu3) jammy; urgency=medium
+
+  * Update to jammy
+
+ -- Andre Masella <andre@masella.name>  Tue, 16 Aug 2022 20:10:10 -0400
+
 apt-roots (1.4ubuntu2) focal; urgency=medium
 
   * Update to new library API

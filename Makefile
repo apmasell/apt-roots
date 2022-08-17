@@ -1,5 +1,5 @@
 apt-roots: apt-roots.cpp
-	gcc -g -o $@ $< -lapt-pkg -lstdc++ -std=c++0x
+	gcc -g -o $@ $< -lapt-pkg -lstdc++ -std=c++17
 
 install:
 	install -D -m 755 apt-roots $(DESTDIR)/usr/bin/apt-roots
